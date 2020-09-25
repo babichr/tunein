@@ -1,0 +1,19 @@
+
+.card,
+.desc,
+select,
+img {
+    margin-bottom: 15px;
+}
+
+.container{
+    padding-top: 15px;
+}
+
+select{
+    max-width: 150px;
+}
+
+.badge{
+    margin-right: 5px;
+}
