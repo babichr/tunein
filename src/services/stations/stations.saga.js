@@ -1,4 +1,4 @@
-import { put, takeEvery, takeLatest } from "redux-saga/effects";
+import { put, takeEvery, takeLatest, select } from "redux-saga/effects";
 import { LOCATION_CHANGE } from "connected-react-router";
 
 import { urlLocations } from "../../routes";
@@ -10,10 +10,12 @@ import {
   GET_STATIONS_SUCCESS
 } from "./stations.action";
 import { getStationsRequest } from "./stations.api";
+import { stationsSelector } from "./stations.selector";
 
-function* getStationsOnLocationsChange({ payload }) {
+function* getStationsOnLocationsChange() {
   try {
-    if (isUrlMatch(payload, urlLocations.root)) {
+    const stations = yield select(stationsSelector);
+    if (!stations.length) {
       yield put({ type: GET_STATIONS });
     }
   } catch (error) {
